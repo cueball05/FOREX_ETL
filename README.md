@@ -1,6 +1,6 @@
 # FOREX_ETL
 
-An ETL pipeline using Docker and Airflow to extract foreign exchange rates and place them into a CSV file.  
+An ETL pipeline using Docker and Airflow that makes a call to an API endpoint and extracts foreign exchange rates and places them into a CSV file.  
 
 The DAG file `ping.py` contains 5 DAGS that will perform the ETL process. 
 
@@ -28,3 +28,12 @@ Calls the user defined function `_process_data` that pulls the extracted data fr
 ## DAG 5: load_data
 
 Calls the user defined function `_store_data` that copies the content from the CSV file into the table rates using Airflow's `PostgresHook`
+
+
+## Aifrlow Configuration
+
+In Admin -> Connections -> New Connection, make a connection to `https://api.apilayer.com/fixer/` under Host. This will allow Airflow to make a call to the API and its endpoint
+![image](https://github.com/cueball05/FOREX_ETL/assets/89449921/b96c3aec-c0db-4580-b380-cc635e68e5e5)
+
+In Admin -> Connections -> New Connection, make a connection to postgres with the following setttings. This will allow Airflow to talk to postgresql to create tables and dump data
+![image](https://github.com/cueball05/FOREX_ETL/assets/89449921/dc41a200-4102-44b9-93e0-3fb8ca1c362a)
