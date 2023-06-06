@@ -58,7 +58,7 @@ with DAG('forex_pipeline', default_args=default_args, schedule_interval = "0 8 *
         task_id = "is_api_available",
         method='GET',
         http_conn_id='is_api_available',
-        endpoint= 'latest?apikey=TkbexcPknZDkRQSAJntfHCm2BNYVXnJ2',
+        endpoint= 'latest?apikey=<your api key>',
         response_check=lambda response: "EUR" in response.text,
         poke_interval= 5
 
@@ -83,7 +83,7 @@ with DAG('forex_pipeline', default_args=default_args, schedule_interval = "0 8 *
         task_id = 'extract_user',
         method='GET',
         http_conn_id = 'is_api_available',
-        endpoint = 'latest?apikey=TkbexcPknZDkRQSAJntfHCm2BNYVXnJ2',
+        endpoint = 'latest?apikey=<your api key>',
         response_filter=lambda response: json.loads(response.text),
         log_response= True
 
